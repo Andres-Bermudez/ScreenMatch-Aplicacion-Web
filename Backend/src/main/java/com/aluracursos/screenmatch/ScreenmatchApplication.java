@@ -7,6 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ScreenmatchApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ScreenmatchApplication.class, args); // Nos permite iniciar la aplicacion.
+		SpringApplication.run(ScreenmatchApplication.class, args); // Para iniciar la aplicacion.
 	}
 }

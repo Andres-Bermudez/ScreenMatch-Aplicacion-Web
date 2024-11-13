@@ -1,4 +1,4 @@
-Aprendi a:
+Aprendizajes del curso:
 
 1. Conectar el back-end con el front-end. Vimos que el front-end esperaba buscar datos
 de una url específica, que era localhost:8080, que es donde subimos nuestro servidor.
@@ -13,8 +13,8 @@ y cómo conectarlas.
 4. Retornar una información en el navegador. Creamos nuestro primer controller y nuestra
 primera ruta de la API, utilizando anotaciones como @RestController y @GetMapping.
 
-5. Devolver los datos de nuestra base a la navegadora. Trabajamos devolviendo los datos
-de nuestra base en el Controller, debidamente serializados.
+5. Devolver los datos de nuestra base de datos al navegador. Trabajamos devolviendo los datos
+de nuestra base de datos en el Controller, debidamente serializados.
 
 6. Tratar la serialización circular. Vimos los problemas que ocurren al intentar serializar
 entidades mapeadas de forma bidireccional y cómo resolverlos.
@@ -24,7 +24,20 @@ buenas prácticas, creamos nuestros DTOs. Así, nuestros datos se volvieron más
 devueltos de forma personalizada.
 
 8. Lidiar con el error de CORS. Conocimos el error entre la comunicación entre rutas de orígenes
- diferentes y pudimos tratarlo, creando la clase CorsConfiguration.
+diferentes y pudimos tratarlo, creando la clase CorsConfiguration.
 
 9. Configurar el Live Reload. Para que la aplicación no necesite ser detenida y reiniciada siempre
 que haya cambios, usamos el Devtools y cambiamos las configuraciones necesarias en Intellij.
+
+10. Hacer el código más limpio y organizado. Vimos que la única responsabilidad de un controlador
+es manejar la comunicación y las rutas de la API. Así, no debe contener reglas de negocio. Y para
+hacer esta división, creamos una clase de servicios, la SerieService.
+
+11. Utilizar buenas prácticas de extracción de métodos Aplicamos principios de la orientación a
+objetos, extrayendo métodos que eran comunes en el código, facilitando el mantenimiento.
+
+12. Crear una url fija para el Controller. Usamos el @RequestMapping para que todas las urls
+mapeadas por el controlador de series tengan como prefijo el “/series”.
+
+13. Retornar los datos de una sola serie. Para buscar una serie, necesitamos que su id sea pasado
+como parámetro. Conocimos el @PathVariable, que nos ayuda en ese objetivo.

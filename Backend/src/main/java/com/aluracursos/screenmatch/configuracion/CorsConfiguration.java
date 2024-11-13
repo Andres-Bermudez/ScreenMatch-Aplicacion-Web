@@ -17,7 +17,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  *   5. El tiempo de vida de la configuración en caché.
 */
 
-@Configuration // Para indicar que esta es una clase de configuracion.
+// @Configuration en Spring Framework se utiliza para indicar que una clase es
+// una fuente de definiciones de beans. Estas clases son utilizadas por Spring
+// para generar y gestionar beans y sus dependencias en el contenedor de
+// inversión de control (IoC).
+@Configuration
 public class CorsConfiguration implements WebMvcConfigurer {
     /*
      * CORS es un protocolo que define cómo se puede acceder a los recursos

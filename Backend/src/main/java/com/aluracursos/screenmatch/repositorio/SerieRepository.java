@@ -12,11 +12,15 @@ import java.util.Optional;
 // realizar operaciones CRUD (Crear, Leer, Actualizar, Borrar) en la entidad Serie.
 public interface SerieRepository extends JpaRepository<Serie,Long> {
 
+    // Todas las series
+    @Query("SELECT s FROM Serie s")
+    List<Serie> todasLasSeries();
+
     // Busca una serie cuyo título contenga la cadena nombreSerie, ignorando mayúsculas y minúsculas.
     Optional<Serie> findByTituloContainsIgnoreCase(String nombreSerie);
 
-    // Obtiene las 5 series con la evaluación más alta, ordenadas en orden descendente.
-    List<Serie> findTop5ByOrderByEvaluacionDesc();
+    // Obtiene las 8 series con la evaluación más alta, ordenadas en orden descendente.
+    List<Serie> findTop8ByOrderByEvaluacionDesc();
 
     // Busca todas las series que pertenecen a un género específico representado por la entidad Categoria.
     List<Serie> findByGenero(Categoria categoria);
@@ -25,15 +29,19 @@ public interface SerieRepository extends JpaRepository<Serie,Long> {
     // Usa una consulta JPQL para buscar series que tengan un número de temporadas menor o igual a
     // totalTemporadas y una evaluación mayor o igual a evaluacion.
     @Query("SELECT s FROM Serie s WHERE s.totalTemporadas <= :totalTemporadas AND s.evaluacion >= :evaluacion")
-    List<Serie> seriesPorTemparadaYEvaluacion(int totalTemporadas, Double evaluacion);
+    List<Serie> seriesPorTemporadaYEvaluacion(int totalTemporadas, Double evaluacion);
 
     // Usa una consulta JPQL para buscar episodios cuyo título contenga la cadena nombreEpisodio,
     // utilizando una comparación insensible a mayúsculas y minúsculas (ILIKE).
     @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE e.titulo ILIKE %:nombreEpisodio%")
     List<Episodio> episodiosPorNombre(String nombreEpisodio);
 
-    // Usa una consulta JPQL para buscar los 5 episodios mejor evaluados de una serie específica,
+    // Usa una consulta JPQL para buscar los 8 episodios mejor evaluados de una serie específica,
     // ordenados en orden descendente por evaluación.
-    @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE s = :serie ORDER BY e.evaluacion DESC LIMIT 5 ")
-    List<Episodio> top5Episodios(Serie serie);
+    @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE s = :serie ORDER BY e.evaluacion DESC LIMIT 8")
+    List<Episodio> top8Episodios(Serie serie);
+
+    // Para obtener las ultimas series agregadas de la base de datos utilizando JPQL.
+    @Query("SELECT s FROM Serie s " + "JOIN s.episodios e " + "GROUP BY s " + "ORDER BY MAX(e.fechaDeLanzamiento) DESC LIMIT 8")
+    List<Serie> ultimasSeriesAgregadas();
 }

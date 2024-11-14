@@ -207,7 +207,7 @@ public class Principal extends Credenciales {
         buscarSeriesPorTitulo();
         if(serieBuscada.isPresent()){
             Serie serie = serieBuscada.get();
-            List<Episodio> topEpisodios = repositorio.top8Episodios(serie);
+            List<Episodio> topEpisodios = repositorio.top5Episodios(serie);
             topEpisodios.forEach(e ->
                     System.out.printf("\nSerie: %s \nTemporada %s \nEpisodio %s \nEvaluación %s",
                             e.getSerie().getTitulo(), e.getTemporada(), e.getTitulo(), e.getEvaluacion()));

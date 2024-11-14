@@ -1,17 +1,18 @@
-![thumbnail-Formação Java](https://github.com/genesysR-dev/2086-screenmatch-front-end/assets/91544872/2d873cba-ca9c-4567-8ce4-fb2785ef9ab4)
+![thumbnail-Formação Java](https://github.com/jacqueline-oliveira/3356-java-web-front/assets/66698429/7bd89d79-1385-4f62-adea-d4a27e79f728)
 
-
-# Front-end de la aplicación ScreenMatch
+# Front-end da aplicação ScreenMatch
 
 Esta es la aplicacion Front-end que será utilizada en el curso.
 
-Fue desarrollada por [Monica Hillman](https://www.linkedin.com/in/monicamhillman/)
+Fue desarrollada por [Monica Hillman](https://cursos.alura.com.br/user/monicahillman)
 
-Para visualizarla, puedes descargarla como zip o clonar el projeto, abrela con VS Code e instala la extensión *Live Server*.
+Para visualizar la misma, puede descargarla o clonar el projeto, abrala con VS Code
 
-Hecho esto, haz clic con el boton derecho en el archivo **index.html** y elige "Open with Live Server".
+Caso no pueda, instale la extensión *Live Server*.
 
-Al principio, como nuestra API no está desarollada el contenido que veras será este de aquí:
+Hecho esto, clic con el boton derecho en el archivo **index.html** y elija "Open with Live Server".
+
+Al principio, en caso su API aún no este desarrollada el contenido que vera será este de aquí:
 
 ![image](https://github.com/jacqueline-oliveira/3356-java-web-front/assets/66698429/b059bf8b-df40-4a51-8a27-9d1058305955)
 
@@ -23,4 +24,4 @@ Después de completar el curso, tu proyecto estará completo, con las series reg
 
 
 
-# Buenos estudios!
+# Buenos estudos!

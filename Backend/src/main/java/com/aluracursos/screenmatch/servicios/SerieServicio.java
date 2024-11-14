@@ -1,6 +1,9 @@
 package com.aluracursos.screenmatch.servicios;
 
+import com.aluracursos.screenmatch.dto.EpisodioDTO;
 import com.aluracursos.screenmatch.dto.SerieDTO;
+import com.aluracursos.screenmatch.modelos.Categoria;
+import com.aluracursos.screenmatch.modelos.Episodio;
 import com.aluracursos.screenmatch.modelos.Serie;
 import com.aluracursos.screenmatch.repositorio.SerieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,10 +46,41 @@ public class SerieServicio {
         return null;
     }
 
-    public List<SerieDTO> convertirAListaSerieDTO(List<Serie> listaSerie) {
-        return listaSerie.stream()
+    public List<EpisodioDTO> getEpisodiosPorTemporada(Long id, Integer numeroTemporada) {
+        return convertirAListaEpisodioDTO(repository.episodiosPorTemporada(id, numeroTemporada));
+    }
+
+    public List<EpisodioDTO> getEpisodiosTemporadasSeries(Long id) {
+        Optional<Serie> seriePorId = repository.findById(id);
+        if (seriePorId.isPresent()) {
+            Serie s = seriePorId.get();
+            return convertirAListaEpisodioDTO(s.getEpisodios());
+        }
+        return null;
+    }
+
+    public List<SerieDTO> getSeriesPorCategoria(String genero) {
+        Categoria categoria = Categoria.fromEspanol(genero);
+        return convertirAListaSerieDTO(repository.findByGenero(categoria));
+    }
+
+    // Reto manos en la masa de Alura. Configurar el Endpoint "/series/id/temporadas/top".
+    public List<EpisodioDTO> getTop5EpisodiosTemporadaSerie(Long id) {
+        return convertirAListaEpisodioDTO(repository.top5EpisodiosTemporadaSerie(id));
+    }
+
+    // Aplicamos principios de la orientación a objetos, extrayendo métodos que son
+    // comunes en el código, facilitando el mantenimiento.
+    public List<SerieDTO> convertirAListaSerieDTO(List<Serie> listaSeries) {
+        return listaSeries.stream()
                 .map(serie -> new SerieDTO(serie.getId(), serie.getTitulo(), serie.getTotalTemporadas(), serie.getEvaluacion(),
                         serie.getPoster(), serie.getGenero(), serie.getActores(), serie.getSinopsis()))
+                .collect(Collectors.toList());
+    }
+
+    public List<EpisodioDTO> convertirAListaEpisodioDTO(List<Episodio> listaEpisodios) {
+        return listaEpisodios.stream()
+                .map(e -> new EpisodioDTO(e.getTemporada(), e.getTitulo(), e.getNumeroEpisodio(), e.getEvaluacion()))
                 .collect(Collectors.toList());
     }
 }

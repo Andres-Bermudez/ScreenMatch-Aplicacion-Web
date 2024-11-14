@@ -38,10 +38,17 @@ public interface SerieRepository extends JpaRepository<Serie,Long> {
 
     // Usa una consulta JPQL para buscar los 8 episodios mejor evaluados de una serie específica,
     // ordenados en orden descendente por evaluación.
-    @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE s = :serie ORDER BY e.evaluacion DESC LIMIT 8")
-    List<Episodio> top8Episodios(Serie serie);
+    @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE s = :serie ORDER BY e.evaluacion DESC LIMIT 5")
+    List<Episodio> top5Episodios(Serie serie);
+
+    // Reto manos en la masa de Alura. Configurar el Endpoint "/series/id/temporadas/top".
+    @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE s.id = :id ORDER BY e.evaluacion DESC LIMIT 5")
+    List<Episodio> top5EpisodiosTemporadaSerie(Long id);
 
     // Para obtener las ultimas series agregadas de la base de datos utilizando JPQL.
     @Query("SELECT s FROM Serie s " + "JOIN s.episodios e " + "GROUP BY s " + "ORDER BY MAX(e.fechaDeLanzamiento) DESC LIMIT 8")
     List<Serie> ultimasSeriesAgregadas();
+
+    @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE s.id = :id AND e.temporada = :numeroTemporada")
+    List<Episodio> episodiosPorTemporada(Long id, Integer numeroTemporada);
 }

@@ -1,4 +1,4 @@
-// URL base de la API
+// URL base da API
 const baseURL = 'http://localhost:8080';
 
 export default function getDatos(endpoint) {
